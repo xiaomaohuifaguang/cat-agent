@@ -1,0 +1,161 @@
+/* ============================================
+   CatAgent Theme System
+   data-theme: brutalist | soft | industrial | cyberpunk
+   data-dark: true | false
+   ============================================ */
+
+/* ---------- Brutalist ---------- */
+[data-theme="brutalist"][data-dark="false"] {
+  --bg-body: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-sidebar: #111111;
+  --bg-header: #FFFFFF;
+  --text-primary: #111111;
+  --text-secondary: #666666;
+  --text-on-dark: #F5F5F5;
+  --border-color: #111111;
+  --border-light: #E5E5E5;
+  --accent-color: #111111;
+  --accent-hover: #333333;
+  --accent-text: #FFFFFF;
+  --radius: 0px;
+  --shadow: none;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
+[data-theme="brutalist"][data-dark="true"] {
+  --bg-body: #0A0A0A;
+  --bg-surface: #111111;
+  --bg-sidebar: #000000;
+  --bg-header: #111111;
+  --text-primary: #F5F5F5;
+  --text-secondary: #888888;
+  --text-on-dark: #F5F5F5;
+  --border-color: #333333;
+  --border-light: #222222;
+  --accent-color: #FFFFFF;
+  --accent-hover: #CCCCCC;
+  --accent-text: #000000;
+  --radius: 0px;
+  --shadow: none;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Mono', monospace;
+}
+
+/* ---------- Soft ---------- */
+[data-theme="soft"][data-dark="false"] {
+  --bg-body: #FDFBF7;
+  --bg-surface: #FFFFFF;
+  --bg-sidebar: #F8F6F1;
+  --bg-header: #FFFFFF;
+  --text-primary: #2D2D2D;
+  --text-secondary: #6B6B6B;
+  --text-on-dark: #2D2D2D;
+  --border-color: #E8E4DE;
+  --border-light: #F0EDE8;
+  --accent-color: #6366F1;
+  --accent-hover: #4F46E5;
+  --accent-text: #FFFFFF;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Source Sans 3', sans-serif;
+}
+
+[data-theme="soft"][data-dark="true"] {
+  --bg-body: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-sidebar: #0B1222;
+  --bg-header: #1E293B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-on-dark: #F1F5F9;
+  --border-color: #334155;
+  --border-light: #1E293B;
+  --accent-color: #818CF8;
+  --accent-hover: #6366F1;
+  --accent-text: #FFFFFF;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Source Sans 3', sans-serif;
+}
+
+/* ---------- Industrial ---------- */
+[data-theme="industrial"][data-dark="false"] {
+  --bg-body: #FFFFFF;
+  --bg-surface: #F9FAFB;
+  --bg-sidebar: #F3F4F6;
+  --bg-header: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --text-on-dark: #1F2937;
+  --border-color: #D1D5DB;
+  --border-light: #E5E7EB;
+  --accent-color: #0891B2;
+  --accent-hover: #0E7490;
+  --accent-text: #FFFFFF;
+  --radius: 4px;
+  --shadow: none;
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+[data-theme="industrial"][data-dark="true"] {
+  --bg-body: #000000;
+  --bg-surface: #0A0A0A;
+  --bg-sidebar: #111111;
+  --bg-header: #0A0A0A;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --text-on-dark: #E5E7EB;
+  --border-color: #374151;
+  --border-light: #1F2937;
+  --accent-color: #22D3EE;
+  --accent-hover: #06B6D4;
+  --accent-text: #000000;
+  --radius: 4px;
+  --shadow: none;
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* ---------- Cyberpunk ---------- */
+[data-theme="cyberpunk"][data-dark="false"] {
+  --bg-body: #0a0a1a;
+  --bg-surface: #111128;
+  --bg-sidebar: #080818;
+  --bg-header: #111128;
+  --text-primary: #e8e8ff;
+  --text-secondary: #8888cc;
+  --text-on-dark: #e8e8ff;
+  --border-color: #ff00ff;
+  --border-light: #222244;
+  --accent-color: #00ffff;
+  --accent-hover: #00cccc;
+  --accent-text: #0a0a1a;
+  --radius: 0px;
+  --shadow: 0 0 8px rgba(0,255,255,0.3);
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+}
+
+[data-theme="cyberpunk"][data-dark="true"] {
+  --bg-body: #050510;
+  --bg-surface: #0a0a1a;
+  --bg-sidebar: #02020a;
+  --bg-header: #0a0a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #6666aa;
+  --text-on-dark: #ffffff;
+  --border-color: #00ffff;
+  --border-light: #111133;
+  --accent-color: #ff00ff;
+  --accent-hover: #cc00cc;
+  --accent-text: #ffffff;
+  --radius: 0px;
+  --shadow: 0 0 12px rgba(255,0,255,0.4);
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+}
