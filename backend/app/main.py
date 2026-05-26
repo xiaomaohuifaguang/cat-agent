@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 
 from app.api.v1 import api_router
 from app.core.response import error
+from app.models import LlmProvider, LlmSetting  # noqa: F401
 
 app = FastAPI(title="CatAgent")
 
@@ -29,3 +30,9 @@ async def general_exception_handler(request, exc):
 
 
 app.include_router(api_router)
+
+
+@app.on_event("startup")
+def startup():
+    from app.core.database import Base, engine
+    Base.metadata.create_all(bind=engine)
