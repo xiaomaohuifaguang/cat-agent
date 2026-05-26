@@ -35,6 +35,36 @@ export default function Sidebar() {
               Dashboard
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/models"
+              className={({ isActive }) =>
+                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
+              }
+              style={({ isActive }) => ({
+                borderRadius: 'var(--radius)',
+                background: isActive ? 'var(--accent-color)' : 'transparent',
+                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
+              })}
+            >
+              模型管理
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/settings"
+              className={({ isActive }) =>
+                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
+              }
+              style={({ isActive }) => ({
+                borderRadius: 'var(--radius)',
+                background: isActive ? 'var(--accent-color)' : 'transparent',
+                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
+              })}
+            >
+              用途配置
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>

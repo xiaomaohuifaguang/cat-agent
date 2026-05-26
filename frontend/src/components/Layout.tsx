@@ -4,6 +4,8 @@ import Header from './Header'
 
 const titleMap: Record<string, string> = {
   '/dashboard': 'Dashboard',
+  '/models': '模型管理',
+  '/settings': '用途配置',
 }
 
 export default function Layout() {
