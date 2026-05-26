@@ -28,6 +28,9 @@ class Settings:
     JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "changeme")
     JWT_EXPIRE_DAYS: int = int(os.getenv("JWT_EXPIRE_DAYS", "7"))
 
+    # 加密配置
+    ENCRYPTION_KEY: str = os.getenv("ENCRYPTION_KEY", "")
+
     @property
     def DATABASE_URL(self) -> str:
         return (
