@@ -34,5 +34,13 @@ app.include_router(api_router)
 
 @app.on_event("startup")
 def startup():
-    from app.core.database import Base, engine
+    from app.core.database import Base, SessionLocal, engine
     Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    try:
+        from app.core.llm_cache import refresh_all_settings_cache
+        refresh_all_settings_cache(db)
+    except Exception:
+        pass
+    finally:
+        db.close()

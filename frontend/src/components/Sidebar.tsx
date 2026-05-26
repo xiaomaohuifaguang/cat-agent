@@ -1,6 +1,16 @@
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+
+const modelSubItems = [
+  { to: '/models', label: '模型管理' },
+  { to: '/settings', label: '用途配置' },
+]
 
 export default function Sidebar() {
+  const location = useLocation()
+  const isModelActive = modelSubItems.some((item) => location.pathname === item.to)
+  const [modelOpen, setModelOpen] = useState(isModelActive)
+
   return (
     <aside
       className="w-64 flex flex-col fixed h-full left-0 top-0"
@@ -36,34 +46,44 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/models"
-              className={({ isActive }) =>
-                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
-              }
-              style={({ isActive }) => ({
+            <button
+              onClick={() => setModelOpen(!modelOpen)}
+              className="w-full flex items-center justify-between px-4 py-2.5 text-sm transition cursor-pointer"
+              style={{
                 borderRadius: 'var(--radius)',
-                background: isActive ? 'var(--accent-color)' : 'transparent',
-                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
-              })}
+                background: isModelActive && !modelOpen ? 'var(--accent-color)' : 'transparent',
+                color: isModelActive && !modelOpen ? 'var(--accent-text)' : 'var(--text-on-dark)',
+              }}
             >
-              模型管理
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/settings"
-              className={({ isActive }) =>
-                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
-              }
-              style={({ isActive }) => ({
-                borderRadius: 'var(--radius)',
-                background: isActive ? 'var(--accent-color)' : 'transparent',
-                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
-              })}
-            >
-              用途配置
-            </NavLink>
+              <span className={isModelActive ? 'font-semibold' : ''}>模型配置</span>
+              <span
+                className="text-xs transition-transform"
+                style={{ transform: modelOpen ? 'rotate(90deg)' : 'rotate(0deg)' }}
+              >
+                &#9654;
+              </span>
+            </button>
+            {modelOpen && (
+              <ul className="mt-1 space-y-1 pl-3">
+                {modelSubItems.map((item) => (
+                  <li key={item.to}>
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `block px-4 py-2 text-sm transition ${isActive ? 'font-semibold' : ''}`
+                      }
+                      style={({ isActive }) => ({
+                        borderRadius: 'var(--radius)',
+                        background: isActive ? 'var(--accent-color)' : 'transparent',
+                        color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
+                      })}
+                    >
+                      {item.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         </ul>
       </nav>

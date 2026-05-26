@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Header from './Header'
+import Toast from './Toast'
 
 const titleMap: Record<string, string> = {
   '/dashboard': 'Dashboard',
@@ -21,6 +22,7 @@ export default function Layout() {
           <Outlet />
         </main>
       </div>
+      <Toast />
     </div>
   )
 }

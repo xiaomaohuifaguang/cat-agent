@@ -10,6 +10,7 @@ import {
   type SettingCreate,
 } from '../api/llm'
 import ConfirmDialog from '../components/ConfirmDialog'
+import { useToastStore } from '../store/toast'
 
 interface FormData {
   category: string
@@ -18,6 +19,7 @@ interface FormData {
 
 export default function ModelSettings() {
   const queryClient = useQueryClient()
+  const addToast = useToastStore((s) => s.addToast)
   const [formOpen, setFormOpen] = useState(false)
   const [editing, setEditing] = useState<SettingResponse | null>(null)
   const [form, setForm] = useState<FormData>({ category: '', provider_id: 0 })
@@ -36,8 +38,12 @@ export default function ModelSettings() {
   const createMut = useMutation({
     mutationFn: (data: SettingCreate) => createSetting(data),
     onSuccess: () => {
+      addToast('success', '添加用途配置成功')
       queryClient.invalidateQueries({ queryKey: ['settings'] })
       closeForm()
+    },
+    onError: (err: any) => {
+      addToast('error', err.response?.data?.message || '添加失败')
     },
   })
 
@@ -45,16 +51,24 @@ export default function ModelSettings() {
     mutationFn: ({ category, provider_id }: { category: string; provider_id: number }) =>
       updateSetting(category, { provider_id }),
     onSuccess: () => {
+      addToast('success', '切换模型成功')
       queryClient.invalidateQueries({ queryKey: ['settings'] })
       closeForm()
+    },
+    onError: (err: any) => {
+      addToast('error', err.response?.data?.message || '更新失败')
     },
   })
 
   const deleteMut = useMutation({
     mutationFn: (category: string) => deleteSetting(category),
     onSuccess: () => {
+      addToast('success', '删除配置成功')
       queryClient.invalidateQueries({ queryKey: ['settings'] })
       setDeleteTarget(null)
+    },
+    onError: (err: any) => {
+      addToast('error', err.response?.data?.message || '删除失败')
     },
   })
 
