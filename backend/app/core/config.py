@@ -18,6 +18,16 @@ class Settings:
     DB_NAME: str = os.getenv("DB_NAME", "catagent")
     DB_TIMEZONE: str = os.getenv("DB_TIMEZONE", "Asia/Shanghai")
 
+    # Redis 配置
+    REDIS_HOST: str = os.getenv("REDIS_HOST", "localhost")
+    REDIS_PORT: int = int(os.getenv("REDIS_PORT", "6379"))
+    REDIS_DB: int = int(os.getenv("REDIS_DB", "0"))
+    REDIS_PASSWORD: str = os.getenv("REDIS_PASSWORD", "")
+
+    # JWT 配置
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "changeme")
+    JWT_EXPIRE_DAYS: int = int(os.getenv("JWT_EXPIRE_DAYS", "7"))
+
     @property
     def DATABASE_URL(self) -> str:
         return (

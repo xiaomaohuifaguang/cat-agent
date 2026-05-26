@@ -1,16 +1,10 @@
-from fastapi import APIRouter, HTTPException
-from sqlalchemy import text
+from fastapi import APIRouter
 
-from app.core.database import engine
+from app.core.response import success
 
 router = APIRouter(tags=["系统"])
 
 
 @router.get("/health")
 def health():
-    try:
-        with engine.connect() as conn:
-            conn.execute(text("SELECT 1"))
-        return {"status": "ok", "database": "connected"}
-    except Exception as e:
-        raise HTTPException(status_code=503, detail=f"数据库连接失败: {str(e)}")
+    return success(data={"status": "ok"}, message="服务正常")
