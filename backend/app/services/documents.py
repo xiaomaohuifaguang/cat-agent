@@ -1,4 +1,4 @@
-import magic
+import puremagic
 
 from app.core.config import settings
 from app.core.parsers import get_parser
@@ -15,8 +15,8 @@ class DocumentService:
         if not file_bytes:
             raise ValueError("文件内容为空")
 
-        # 2. 用 python-magic 检测真实 MIME 类型（基于文件头）
-        mime_type = magic.from_buffer(file_bytes, mime=True)
+        # 2. 用 puremagic 检测真实 MIME 类型（基于文件头）
+        mime_type = puremagic.from_string(file_bytes, mime=True, filename=filename)
 
         # 3. 查找对应 Parser
         parser = get_parser(mime_type)
