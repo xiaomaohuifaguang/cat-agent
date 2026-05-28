@@ -83,13 +83,13 @@ export default function FileParser() {
             type="file"
             className="hidden"
             onChange={onFileChange}
-            accept=".txt,.md,.json,.html,.xml,.css,.js"
+            accept=".txt,.md,.json,.html,.xml,.css,.js,.png,.jpg,.jpeg,.gif,.webp,.bmp"
           />
           <p className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>
             拖拽文件到此处，或点击上传
           </p>
           <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-            支持 .txt .md .json .html .xml .css .js，最大 {MAX_SIZE_MB}MB
+            支持文本、图片等格式，最大 {MAX_SIZE_MB}MB
           </p>
         </div>
 

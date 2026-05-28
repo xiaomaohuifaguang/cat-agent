@@ -1,4 +1,5 @@
 from app.core.parsers.base import BaseParser
+from app.core.parsers.image import ImageParser
 from app.core.parsers.txt import TxtParser
 
 # MIME -> Parser 映射表
@@ -13,6 +14,7 @@ def _register_parser(parser_cls: type[BaseParser]):
 
 # 注册所有解析器
 _register_parser(TxtParser)
+_register_parser(ImageParser)
 
 
 def get_parser(mime_type: str) -> BaseParser | None:
