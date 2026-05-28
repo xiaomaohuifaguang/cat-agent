@@ -31,6 +31,9 @@ class Settings:
     # 加密配置
     ENCRYPTION_KEY: str = os.getenv("ENCRYPTION_KEY", "")
 
+    # 文件上传配置
+    MAX_UPLOAD_SIZE: int = int(os.getenv("MAX_UPLOAD_SIZE", "524288000"))  # 500MB
+
     @property
     def DATABASE_URL(self) -> str:
         return (
