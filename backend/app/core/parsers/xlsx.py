@@ -30,6 +30,31 @@ class XlsxParser(BaseParser):
 
         return "\n\n---\n\n".join(parts)
 
+    def parse_sheets(self, file_bytes: bytes, filename: str) -> list[dict]:
+        """将文件字节按 Sheet 解析为文本
+
+        Returns:
+            每个 Sheet 解析后的内容列表，每项包含 name（Sheet 名称）和 text
+        """
+        if not file_bytes:
+            raise ValueError("文件内容为空")
+
+        wb = openpyxl.load_workbook(io.BytesIO(file_bytes))
+        sheets = []
+
+        for sheet_name in wb.sheetnames:
+            sheet = wb[sheet_name]
+            md = self._sheet_to_markdown(sheet, sheet_name)
+            if md:
+                sheets.append({"name": sheet_name, "text": md})
+
+        wb.close()
+
+        if not sheets:
+            raise ValueError("Excel 内容为空或无法解析")
+
+        return sheets
+
     def _sheet_to_markdown(self, sheet, sheet_name: str) -> str:
         """将单个 sheet 转为 Markdown 表格"""
         rows = []

@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 
 from app.api.v1 import api_router
 from app.core.response import error
-from app.models import LlmProvider, LlmSetting  # noqa: F401
+from app.models import ApiKey, ApiKeyPermission, ApiKeyUsageLog, LlmProvider, LlmSetting  # noqa: F401
 
 app = FastAPI(title="CatAgent")
 

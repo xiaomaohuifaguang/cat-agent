@@ -1,7 +1,19 @@
 import { apiClient } from './client'
 
+export interface PageItem {
+  page: number
+  text: string
+}
+
+export interface SheetItem {
+  name: string
+  text: string
+}
+
 export interface ParseResponse {
   text: string
+  pages?: PageItem[]
+  sheets?: SheetItem[]
 }
 
 export async function parseDocument(file: File) {

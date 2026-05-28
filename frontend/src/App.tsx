@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import ModelProviders from './pages/ModelProviders'
 import ModelSettings from './pages/ModelSettings'
 import FileParser from './pages/FileParser'
+import ApiKeys from './pages/ApiKeys'
 
 function App() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
@@ -24,6 +25,7 @@ function App() {
         <Route path="models" element={<ModelProviders />} />
         <Route path="settings" element={<ModelSettings />} />
         <Route path="parser" element={<FileParser />} />
+        <Route path="api-keys" element={<ApiKeys />} />
         <Route path="" element={<Navigate to="/dashboard" replace />} />
       </Route>
       <Route path="*" element={<Navigate to="/login" replace />} />

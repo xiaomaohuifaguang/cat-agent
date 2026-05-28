@@ -100,6 +100,21 @@ export default function Sidebar() {
               文件解析
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/api-keys"
+              className={({ isActive }) =>
+                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
+              }
+              style={({ isActive }) => ({
+                borderRadius: 'var(--radius)',
+                background: isActive ? 'var(--accent-color)' : 'transparent',
+                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
+              })}
+            >
+              API Key 管理
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>
