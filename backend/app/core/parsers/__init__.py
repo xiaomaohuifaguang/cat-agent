@@ -3,6 +3,7 @@ from app.core.parsers.docx import DocxParser
 from app.core.parsers.image import ImageParser
 from app.core.parsers.pdf import PdfParser
 from app.core.parsers.txt import TxtParser
+from app.core.parsers.xlsx import XlsxParser
 
 # MIME -> Parser 映射表
 PARSER_REGISTRY: dict[str, type[BaseParser]] = {}
@@ -19,6 +20,7 @@ _register_parser(TxtParser)
 _register_parser(ImageParser)
 _register_parser(PdfParser)
 _register_parser(DocxParser)
+_register_parser(XlsxParser)
 
 
 def get_parser(mime_type: str) -> BaseParser | None:
