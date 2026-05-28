@@ -1,3 +1,5 @@
+import io
+
 from pypdf import PdfReader
 
 from app.core.parsers.base import BaseParser
@@ -11,7 +13,7 @@ class PdfParser(BaseParser):
         if not file_bytes:
             raise ValueError("文件内容为空")
 
-        reader = PdfReader(file_bytes)
+        reader = PdfReader(io.BytesIO(file_bytes))
         parts = []
         img_index = 0
 
@@ -21,22 +23,30 @@ class PdfParser(BaseParser):
             if text:
                 parts.append(text)
 
-            # 提取图片并 OCR
-            if "/Resources" in page:
-                resources = page["/Resources"]
-                if "/XObject" in resources:
-                    xobjects = resources["/XObject"]
-                    for name in xobjects:
-                        obj = xobjects[name]
-                        try:
-                            obj = obj.get_object() if hasattr(obj, "get_object") else obj
-                            if obj.get("/Subtype") == "/Image":
-                                img_index += 1
-                                img_data = obj.get_data() if hasattr(obj, "get_data") else obj.data
-                                ocr_text = OcrService.recognize(img_data, filename)
-                                parts.append(f"[图{img_index}: {ocr_text}]")
-                        except Exception:
-                            continue
+            # 提取图片并 OCR（简化版）
+            try:
+                if "/Resources" in page:
+                    resources = page["/Resources"]
+                    if "/XObject" in resources:
+                        xobjects = resources["/XObject"]
+                        for name in xobjects:
+                            try:
+                                obj = xobjects[name]
+                                if hasattr(obj, "get_object"):
+                                    obj = obj.get_object()
+                                subtype = obj.get("/Subtype")
+                                if subtype == "/Image":
+                                    img_index += 1
+                                    try:
+                                        img_data = obj.get_data()
+                                    except Exception:
+                                        continue
+                                    ocr_text = OcrService.recognize(img_data, filename)
+                                    parts.append(f"[图{img_index}: {ocr_text}]")
+                            except Exception:
+                                continue
+            except Exception:
+                pass
 
         if not parts:
             raise ValueError("PDF 内容为空或无法解析")
