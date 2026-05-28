@@ -4,7 +4,17 @@ from app.core.parsers.base import BaseParser
 
 
 class TxtParser(BaseParser):
-    supported_mimes = ["text/plain", "application/json", "text/html", "text/xml", "text/css", "text/javascript", "application/javascript"]
+    supported_mimes = [
+        "text/plain",
+        "application/json",
+        "text/html",
+        "text/xml",
+        "text/css",
+        "text/javascript",
+        "application/javascript",
+        "text/markdown",
+        "text/x-markdown",
+    ]
 
     def parse(self, file_bytes: bytes, filename: str) -> str:
         if not file_bytes:
