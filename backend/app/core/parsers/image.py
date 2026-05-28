@@ -12,7 +12,8 @@ class ImageParser(BaseParser):
         "image/bmp",
     ]
 
-    def parse(self, file_bytes: bytes, filename: str) -> str:
+    def parse(self, file_bytes: bytes, filename: str, img_index: int = 1) -> str:
         if not file_bytes:
             raise ValueError("文件内容为空")
-        return OcrService.recognize(file_bytes, filename)
+        text = OcrService.recognize(file_bytes, filename)
+        return f"[图{img_index}: {text}]"
