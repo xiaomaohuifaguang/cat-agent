@@ -60,9 +60,9 @@ export default function FileParser() {
   }
 
   return (
-    <div className="flex gap-6 h-full overflow-hidden" style={{ minHeight: 'calc(100vh - 200px)' }}>
+    <div className="flex gap-6 overflow-hidden" style={{ height: 'calc(100vh - 140px)' }}>
       {/* 左侧上传区 */}
-      <div className="w-2/5 min-w-0 flex flex-col gap-4">
+      <div className="w-2/5 min-w-0 flex flex-col gap-4 overflow-y-auto">
         <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
           文件解析
         </h2>
@@ -143,10 +143,11 @@ export default function FileParser() {
         </div>
 
         <div
-          className="flex-1 p-4 overflow-auto min-w-0"
+          className="flex-1 p-4 overflow-y-auto min-w-0"
           style={{
             ...boxStyle,
             background: 'var(--bg-body)',
+            maxHeight: 'calc(100vh - 200px)',
           }}
         >
           {parseMut.isPending ? (
