@@ -60,9 +60,9 @@ export default function FileParser() {
   }
 
   return (
-    <div className="flex gap-6 h-full" style={{ minHeight: 'calc(100vh - 200px)' }}>
+    <div className="flex gap-6 h-full overflow-hidden" style={{ minHeight: 'calc(100vh - 200px)' }}>
       {/* 左侧上传区 */}
-      <div className="w-2/5 flex flex-col gap-4">
+      <div className="w-2/5 min-w-0 flex flex-col gap-4">
         <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
           文件解析
         </h2>
@@ -118,7 +118,7 @@ export default function FileParser() {
       </div>
 
       {/* 右侧展示区 */}
-      <div className="w-3/5 flex flex-col">
+      <div className="w-3/5 min-w-0 flex flex-col">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
             解析结果
@@ -143,7 +143,7 @@ export default function FileParser() {
         </div>
 
         <div
-          className="flex-1 p-4 overflow-auto"
+          className="flex-1 p-4 overflow-auto min-w-0"
           style={{
             ...boxStyle,
             background: 'var(--bg-body)',
@@ -153,8 +153,8 @@ export default function FileParser() {
             <p style={{ color: 'var(--text-secondary)' }}>解析中...</p>
           ) : text ? (
             <pre
-              className="whitespace-pre-wrap text-sm"
-              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
+              className="whitespace-pre-wrap text-sm break-all"
+              style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)', wordBreak: 'break-all', overflowWrap: 'break-word' }}
             >
               {text}
             </pre>
