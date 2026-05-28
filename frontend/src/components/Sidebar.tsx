@@ -85,6 +85,21 @@ export default function Sidebar() {
               </ul>
             )}
           </li>
+          <li>
+            <NavLink
+              to="/parser"
+              className={({ isActive }) =>
+                `block px-4 py-2.5 text-sm transition ${isActive ? 'font-semibold' : ''}`
+              }
+              style={({ isActive }) => ({
+                borderRadius: 'var(--radius)',
+                background: isActive ? 'var(--accent-color)' : 'transparent',
+                color: isActive ? 'var(--accent-text)' : 'var(--text-on-dark)',
+              })}
+            >
+              文件解析
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>
