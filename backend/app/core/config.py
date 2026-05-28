@@ -1,8 +1,23 @@
 import os
+import re
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def _parse_size(value: str | None, default: int) -> int:
+    """解析带单位的大小字符串，如 '500M', '1G', '1024K'"""
+    if not value:
+        return default
+    value = value.strip().upper()
+    match = re.match(r"^(\d+(?:\.\d+)?)\s*([KMGT]?)B?$", value)
+    if not match:
+        return default
+    num = float(match.group(1))
+    unit = match.group(2)
+    multipliers = {"": 1, "K": 1024, "M": 1024 ** 2, "G": 1024 ** 3, "T": 1024 ** 4}
+    return int(num * multipliers.get(unit, 1))
 
 
 class Settings:
@@ -32,7 +47,7 @@ class Settings:
     ENCRYPTION_KEY: str = os.getenv("ENCRYPTION_KEY", "")
 
     # 文件上传配置
-    MAX_UPLOAD_SIZE: int = int(os.getenv("MAX_UPLOAD_SIZE", "524288000"))  # 500MB
+    MAX_UPLOAD_SIZE: int = _parse_size(os.getenv("MAX_UPLOAD_SIZE"), 524288000)  # 500MB
 
     @property
     def DATABASE_URL(self) -> str:
